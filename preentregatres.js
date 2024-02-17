@@ -1,4 +1,4 @@
-const titulo = document.querySelector("texto1");
+const titulo = document.querySelector("#texto1");
 const modal = new bootstrap.Modal('#modalCarrito', {});
 const btnModalCarrito = document.querySelector('#btnModalCarrito');
 const cartCount = document.querySelector('#cartCount');
@@ -11,6 +11,8 @@ const btnClose = document.querySelector('#btnClose');
 const btnSave = document.querySelector('#btnSave');
 const btnOrder =document.querySelector('#btnOrder');
 const btnOrder2 =document.querySelector('#btnOrder2');
+
+let products_list = []
 
 const listCart = JSON.parse( localStorage.getItem('cart')) || [] ;
 const cart = new Cart(listCart);
@@ -25,22 +27,33 @@ btnModalCarrito.addEventListener('click', function(){
   modal.show();
 })
 
+btnSave.addEventListener('click', ()=> {
+
+  modal.hide();
+  Swal.fire({
+    title: "Carrito de Compras",
+    text: "Compra realizada con éxito",
+    icon: "success"
+  });
+
+  localStorage.removeItem('cart');
+})
+
 btnClose.addEventListener('click', ()=>{
   modal.hide();
 })
 
 inputSearch.addEventListener('input', (event) => {
 const search = event.target.value;
-const newList = products.filter( (product) => product.name.toLowerCase().includes(search.toLowerCase() ));
+const newList = products_list.filter( (product) => product.name.toLowerCase().includes(search.toLowerCase() ));
 renderProducts(newList);
 })
 
-selectCategory.addEventListener('click', (event) => {
-  const seleccionar = event.target.value;
-  const secondList = products.filter( (product) => product.category === category );
-  return product;
-  renderProducts(secondList);
-  })
+ selectCategory.addEventListener('change', (event) => {
+  const id_category = selectCategory.value;
+   
+       filtroCategoria( id_category)
+ })
 
   btnOrder.addEventListener('click', () =>{
     products.sort ( (a, b) => {
@@ -68,6 +81,11 @@ selectCategory.addEventListener('click', (event) => {
     renderProducts (products)
   })
 
+  const filtroCategoria = ( id_category ) => {
+    const newList = products_list.filter ( (product) => product.id_category == id_category );
+    renderProducts(newList);
+  }
+
 //recorro el array
 const renderProducts = (list) =>{
  listProducts.innerHTML = '';
@@ -81,7 +99,7 @@ list.forEach((products) => {
                          </div>                         <div class="card-body">
                          <h4> ${products.name} </h4>
                              <p> $${products.price}</p>
-                             <button id="${products.id} " type="button" class="btn btn-primary btnAddCart">
+                             <button id="${products.id_product} " type="button" class="btn btn-primary btnAddCart">
                              <i class="fa-solid fa-cart-plus"></i> Agregar
                     </button>
                              </div>
@@ -100,10 +118,20 @@ btns.forEach(btn => {
 
 const addToCart = ( e )=> {
   const id = e.target.id;
-  const product = products.find ( item => item.id == id);
+  const product = products.find ( item => item.id_product == id);
   console.table(product);
   cart.addToCart ( product );
   cartCount.innerText = cart.getCount();
+
+  Toastify({
+    text: "Producto agregado al carrito",
+    duration: 3000,
+    gravity: 'bottom',
+    position: 'right',
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    }).showToast();
   
 }
 
@@ -123,6 +151,46 @@ const renderCart = (list) =>{
   });
 
 }
-renderProducts (products);
+
+const renderCategory = (list) => {
+  selectCategory.innerHTML = '';
+  list.forEach(category => {
+    selectCategory.innerHTML += //html
+    ` <option value="${category.id_category}">${category.name}</option> `
+    
+  });
+}
+
+//hacemos una solicitud AJAX--> FETCH
+const getProducts = async () => {
+  
+  try {
+       const endPoint = "data.json";
+       const resp = await fetch (endPoint);
+       const json = await resp.json();
+
+       const {products, category} = json;
+       products_list = products;
+
+       console.table (category)
+
+       renderProducts (products);  
+       renderCategory (category)
+
+  } catch (error) {
+    Swal.fire({
+      icon: "error",
+      title: "Error.",
+      text: "Ocurrio un error al cargar la pagina",
+      confirmButtonText: 'Aceptar'
+       });
+  }
+
+
+
+ //
+
+}
+
 
 // cartCount.innerText = cart.getCount();

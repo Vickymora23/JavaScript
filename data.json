@@ -1,0 +1,106 @@
+{
+    "products": [
+   {"id_product": 1,
+    "name": "Buzo polar rosa",
+    "img": "images/buzopolarrosa.png",
+    "talle": "M",
+    "id_category": 3,
+    "price": "18000"
+  },
+  {
+    "id_product": 2,
+    "name": "Buzo tejido verde y blanco",
+    "img": "images/buzotejidoverde.png",
+    "talle": "M",
+    "id_category": 2,
+    "price": "30000"
+  },
+  {
+    "id_product": 3,
+    "name": "Campera impermeable amarilla",
+    "img": "images/camperaamarilla.png",
+    "talle": "S",
+    "id_category": 1,
+    "price": "32000"
+  },
+  {
+    "id_product": 4,
+    "name": "Campera ecocuero",
+    "img": "images/camperaecocuero.png",
+    "talle": "M",
+    "id_category": 1,
+    "price": "30000"
+  },
+  {
+    "id_product": 5,
+    "name": "Buzo polar negro",
+    "img": "images/camperapolarnegra.png",
+    "talle": "L",
+    "id_category": 3,
+    "price": "25000"
+  },
+  {
+    "id_product": 6,
+    "name": "Buzo polar rojo",
+    "img": "images/camperapolarroja.png",
+    "talle": "M",
+    "id_category": 3,
+    "price": "18000"
+  },
+  {
+    "id_product": 7,
+    "name": "Buzo tejido blanco",
+    "img": "images/camperatejidablanca.png",
+   "talle": "M",
+    "id_category": 2,
+    "price": "30000"
+  },
+  {
+    "id_product": 8,
+   "name": "Campera impermeable rojo y negro",
+    "img": "images/camperitanegra.png",
+    "talle": "l",
+    "id_category": 1,
+    "price": "23000"
+  },
+  {
+    "id_product": 9,
+    "name": "Piloto azul",
+    "img": "images/pilotoazul.png",
+    "talle": "S",
+    "id_category": 1,
+    "price": "20000"
+  },
+  {
+    "id_product": 10,
+    "name": "Piloto plateado",
+    "img": "images/pilotoplateado.png",
+    "talle": "M",
+    "id_category": 1,
+    "price": "23000"
+  },
+  {
+    "id_product": 11,
+    "name": "Piloto rojo",
+    "img": "images/pilotorojo.png",
+    "talle": "M",
+    "id_category": 1,
+   " price": "20000"
+  },
+  {
+    "id_product": 12,
+    "name": "Buzo polar gris y azul",
+    "img": "images/polargrisyazul.png",
+    "talle": "M",
+    "id_category": 3,
+    "price": "18000"
+  }
+],
+"category": [
+  {"id_category": 1, "name": "Camperas Impermeables"},
+  {"id_category": 2, "name": "Buzos Tejidos"},
+  {"id_category": 3, "name": "Buzos Polar"}
+]
+
+}
+
