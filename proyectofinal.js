@@ -13,6 +13,7 @@ const btnOrder =document.querySelector('#btnOrder');
 const btnOrder2 =document.querySelector('#btnOrder2');
 
 let products_list = []
+let products = []
 
 const listCart = JSON.parse( localStorage.getItem('cart')) || [] ;
 const cart = new Cart(listCart);
@@ -191,6 +192,7 @@ const getProducts = async () => {
  //
 
 }
+getProducts();
 
 
 // cartCount.innerText = cart.getCount();
